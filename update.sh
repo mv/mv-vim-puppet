@@ -4,6 +4,6 @@
 
 wget -O - https://github.com/puppetlabs/puppet/tarball/master | tar xz --strip-components 3 --wildcards --no-anchored "*/ext/vim"
 
-if ! git diff-index --quiet HEAD --; then
+if [ "$(git status --porcelain)" ]; then
   git commit -am "Changes from upstream."
 fi
