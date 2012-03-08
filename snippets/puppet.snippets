@@ -28,11 +28,11 @@ snippet user
 	    gid        => "${2}",
 	    shell      => "/bin/${3:bash}",
 	    home       => "/home/${1}",
-	    comment    => "User ${1}"
+	    comment    => "User ${1}",
 	  # password   => '*',
 	  # groups     => [ 'users','app','dba' ]
 	    managehome => true,
-	    allowdupe  => false
+	    allowdupe  => false,
 	  # tag        => "app-app",
 	}
 
@@ -53,12 +53,12 @@ snippet package
 snippet file
 	file { "${1}":
 	    ensure  => present,
-	    path    => "/path/to/file"
-	    owner   => "${2:user}"
-	    group   => "${3:app}"
+	    path    => "/path/to/file",
+	    owner   => "${2:user}",
+	    group   => "${3:app}",
 	    mode    => "0644",
-	    source  => "${4:module_name}/${5:file_name}"
-	  # content => template( "puppet:///modules/${4:module_name}/${5:file_name}" )
+	    source  => "${4:module_name}/${5:file_name}",
+	  # content => template( "puppet:///modules/${4:module_name}/${5:file_name}" ),
 	  # content => "Blahblah \n\n",
 	  # content => $str,
 	  # backup  => main, # if defined 'filebucket'
@@ -91,11 +91,11 @@ snippet exec
 	  # user        => 'user',
 	  # group       => 'app',
 	  # environment => [ "RAILS_ENV=production", "TAG=v1" ],
-	 #  onlyif      => "test `du /var/log/messages | cut -f1` -gt 100000"
-	 #  unless      => "grep root /usr/lib/cron/cron.allow 2>/dev/null"
-	  # tries       => 3
-	  # timeout     => 60  # seconds
-	  # try_sleep   => 15  # seconds
+	 #  onlyif      => "test `du /var/log/messages | cut -f1` -gt 100000",
+	 #  unless      => "grep root /usr/lib/cron/cron.allow 2>/dev/null",
+	  # tries       => 3,
+	  # timeout     => 60, # seconds
+	  # try_sleep   => 15, # seconds
 	  # tag         => "app-app",
 	}
 
@@ -103,17 +103,17 @@ snippet exec
 snippet ssh
 	ssh_authorized_key {
 	    ensure  => present,
-	    user    => '${1}'
-	    key     => '${2}'
-	    name    => '${1:user@host}'
+	    user    => '${1}',
+	    key     => '${2}',
+	    name    => '${1:user@host}',
 	  # tag     => "app-app",
 	}
 
 snippet host
 	host { "${1:localhost}":
 	    ensure       => present,
-	    ip           => '${2:127.0.0.1}'
-	    name         => '${1:localhost}'
+	    ip           => '${2:127.0.0.1}',
+	    name         => '${1:localhost}',
 	  # host_aliases => [ 'localhost.localdomain' ],
 	  # comment      => 'localhost only!',
 	  # tag          => "app-app",
@@ -190,19 +190,9 @@ snippet node
 
 
 snippet class
-	class ${1} {
+	class ${1}() {
 
-	    $${1:var} = ${2}
-
-	    # Additional tags:
-	    # tag("app-app")
-	}
-
-
-snippet class
-	class ${1}(${1:param}) {
-
-	    $${1:var} = ${2}
+		# code
 
 	    # Additional tags:
 	    # tag("app-app")
@@ -228,8 +218,8 @@ snippet dir
 	    ensure  => directory,
 	    path    => "",
 	    mode    => "0775",
-	    owner   => "${2}"
-	    group   => "${3}"
+	    owner   => "${2}",
+	    group   => "${3}",
 	    recurse => false,
 	  # tag     => "app-app",
 	}
@@ -239,7 +229,7 @@ snippet link
 	file { "${1}":
 	    ensure  => link,
 	    target  => "${2}",
-	    force   => true
+	    force   => true,
 	  # tag     => "app-app",
 	}
 
