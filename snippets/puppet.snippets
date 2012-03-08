@@ -36,29 +36,18 @@ snippet user
 	  # tag        => "app-app",
 	}
 
-snippet ssh
-	ssh_authorized_key {
-	    ensure  => present,
-	    user    => '${1}'
-	    key     => '${2}'
-	    name    => '${1:user@host}'
-	  # tag     => "app-app",
+snippet package
+	package { "${1:package}":
+	    ensure      => "present",
+	  # ensure      => [installed, '1.6.9p17-2'],
+	  # require     => Package[ openssl ],
+	  # source      => "http://exameple.com/pkg.rpm",
+	  # provider    => :rpm,
+	  # provider    => :yum,
+	  # alias       => "openssh",
+	  # description => "OpenSSH",
+	  # tag         => "app-app",
 	}
-
-snippet dir
-	file { "${1}":
-	    ensure  => directory,
-	    path    => "",
-	    mode    => "0775",
-	    owner   => "${2}"
-	    group   => "${3}"
-	    recurse => false,
-	  # tag     => "app-app",
-	}
-
-
-snippet Dir
-	File { mode => "0775", owner => "${1:user}" group => "${3:app}" } # Dir
 
 
 snippet file
@@ -78,15 +67,16 @@ snippet file
 	}
 
 
-snippet File
-	File { mode => "0644", owner => "${1:user}" group => "${3:app}" } # File
-
-
-snippet link
-	file { "${1}":
-	    ensure  => link,
-	    target  => "${2}",
-	    force   => true
+snippet service
+	service { "${1:service}":
+	    name    => "${2:service_name}",
+	    ensure  => running,
+	    enable  => true,
+	  # pattern => "${1:service_name}",
+	  # start   => "",
+	  # stop    => "",
+	  # restart => "",
+	  # status  => "",
 	  # tag     => "app-app",
 	}
 
@@ -110,45 +100,14 @@ snippet exec
 	}
 
 
-snippet Exec
-	Exec {
-	    path      => '/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
-	    logoutput => on_failure,
+snippet ssh
+	ssh_authorized_key {
+	    ensure  => present,
+	    user    => '${1}'
+	    key     => '${2}'
+	    name    => '${1:user@host}'
+	  # tag     => "app-app",
 	}
-
-
-snippet package
-	package { "${1:package}":
-	    ensure      => "present",
-	  # ensure      => [installed, '1.6.9p17-2'],
-	  # require     => Package[ openssl ],
-	  # source      => "http://exameple.com/pkg.rpm",
-	  # provider    => :rpm,
-	  # provider    => :yum,
-	  # alias       => "openssh",
-	  # description => "OpenSSH",
-	  # tag         => "app-app",
-	}
-
-
-snippet Package
-	Package { source  => "http://exameple.com/pkg.rpm" }
-
-
-snippet cron
-	cron { "${1:myjob}":
-	    ensure      => present,
-	    command     => "${2:/usr/local/bin/myjob.sh -f}",
-	    user        => "${3:userapp}",
-	    hour        => "23",  # 00-23
-	    minute      => "00",  # 00-59
-	  # monthday    => "01",  # 01-31
-	  # month       => "01",  # 01-12
-	  # weekday     => "01",  # 00-07 / Sunday,Monday,etc...
-	  # environment => [ "RAILS_ENV=production", "TAG=v1" ],
-	  # tag         => "app-app",
-	}
-
 
 snippet host
 	host { "${1:localhost}":
@@ -175,17 +134,18 @@ snippet mount
 	}
 
 
-snippet service
-	service { "${1:service}":
-	    name    => "${2:service_name}",
-	    ensure  => running,
-	    enable  => true,
-	  # pattern => "${1:service_name}",
-	  # start   => "",
-	  # stop    => "",
-	  # restart => "",
-	  # status  => "",
-	  # tag     => "app-app",
+snippet cron
+	cron { "${1:myjob}":
+	    ensure      => present,
+	    command     => "${2:/usr/local/bin/myjob.sh -f}",
+	    user        => "${3:userapp}",
+	    hour        => "23",  # 00-23
+	    minute      => "00",  # 00-59
+	  # monthday    => "01",  # 01-31
+	  # month       => "01",  # 01-12
+	  # weekday     => "01",  # 00-07 / Sunday,Monday,etc...
+	  # environment => [ "RAILS_ENV=production", "TAG=v1" ],
+	  # tag         => "app-app",
 	}
 
 
@@ -257,6 +217,61 @@ snippet define
 	end
 	}
 
+
+
+#############################################################################
+###
+### Types: shortcuts
+###
+snippet dir
+	file { "${1}":
+	    ensure  => directory,
+	    path    => "",
+	    mode    => "0775",
+	    owner   => "${2}"
+	    group   => "${3}"
+	    recurse => false,
+	  # tag     => "app-app",
+	}
+
+
+snippet link
+	file { "${1}":
+	    ensure  => link,
+	    target  => "${2}",
+	    force   => true
+	  # tag     => "app-app",
+	}
+
+snippet =>
+	=> "${1}",
+
+snippet =>[
+	=> [ "${1}",
+	     "${2}",
+	   ],
+
+#############################################################################
+###
+### Types: globals
+###
+snippet Package
+	Package { source  => "http://exameple.com/pkg.rpm" }
+
+
+snippet Exec
+	Exec {
+	    path      => '/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+	    logoutput => on_failure,
+	}
+
+
+snippet File
+	File { mode => "0644", owner => "${1:user}" group => "${3:app}" } # File
+
+
+snippet Dir
+	File { mode => "0775", owner => "${1:user}" group => "${3:app}" } # Dir
 
 
 #############################################################################
