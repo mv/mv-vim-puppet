@@ -11,6 +11,85 @@
 
 #############################################################################
 ###
+### Language
+###
+
+snippet =
+	= $operatingsystem ? {
+	  /(redhat|centos)/ => 'bin',
+	  /(ubuntu|debian)/ => 'bin',
+	  default           => undef,
+	}
+
+
+snippet ?
+	? {
+	  /(redhat|centos)/ => 'bin',
+	  /(ubuntu|debian)/ => 'bin',
+	  default           => undef,
+	}
+
+
+snippet case
+	case $operatingsystem {
+	  /(redhat|centos)/: {
+	    include mod_rpm
+	    notice("included mod_rpm")
+	  }
+	  /(ubuntu|debian)/: {
+	    include mod_deb
+	    notice("included mod_deb")
+	  }
+	  default:           {
+	    include mod_default
+	    notice("included mod_default")
+	  }
+
+	} # end case
+
+
+snippet if
+	if $variable {
+	  #
+	  #
+	}
+
+
+snippet ife
+	if $variable {
+	  #
+	  #
+	}
+	else {
+	  #
+	  #
+	}
+
+
+snippet ifi
+	if $variable == '1' {
+	  #
+	  #
+	}
+	elsif $variable == '2' {
+	  #
+	  #
+	}
+	else {
+	  #
+	  #
+	}
+
+
+snippet unless
+	unless $variable {
+	  #
+	  #
+	}
+
+
+#############################################################################
+###
 ### Types
 ###
 
