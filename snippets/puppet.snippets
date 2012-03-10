@@ -188,6 +188,7 @@ snippet ssh
 	# tag     => 'app-app',
 	}
 
+
 snippet host
 	host { '${1:localhost}':
 	  ensure       => present,
@@ -275,7 +276,8 @@ snippet class
 
 	  # Additional tags:
 	  # tag('app-app')
-	}
+
+	} # end class
 
 
 snippet classp
@@ -288,7 +290,8 @@ snippet classp
 
 	  # Additional tags:
 	  # tag('app-app')
-	}
+
+	} # end class
 
 
 snippet define
@@ -296,8 +299,7 @@ snippet define
 
 	  include ${2}
 
-	end
-	}
+	} # end define
 
 
 
@@ -305,6 +307,7 @@ snippet define
 ###
 ### Types: shortcuts
 ###
+
 snippet dir
 	file { '${1}':
 	  ensure  => directory,
@@ -325,8 +328,10 @@ snippet link
 	# tag     => 'app-app',
 	}
 
+
 snippet =>
 	=> '${1}',
+
 
 snippet =>[
 	=> [ '${1}',
@@ -337,6 +342,7 @@ snippet =>[
 ###
 ### Types: globals
 ###
+
 snippet Package
 	Package { ensure => present }
 
