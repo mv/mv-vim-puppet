@@ -375,3 +375,94 @@ snippet versioncmp
 snippet warn
 	warning('${1:string}')
 
+#############################################################################
+###
+### Rdoc file headers
+###     Ref: http://docs.puppetlabs.com/guides/style_guide.html
+###
+
+snippet rdclass
+	# == Class: example_class
+	#
+	# Full description of class example_class here.
+	#
+	# === Parameters
+	#
+	# Document parameters here.
+	#
+	# [*ntp_servers*]
+	#   Explanation of what this parameter affects and what it defaults to.
+	#   e.g. "Specify one or more upstream ntp servers as an array."
+	#
+	# === Variables
+	#
+	# Here you should define a list of variables that this module would require.
+	#
+	# [*enc_ntp_servers*]
+	#   Explanation of how this variable affects the funtion of this class and if it
+	#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
+	#   External Node Classifier as a comma separated list of hostnames." (Note,
+	#   global variables should not be used in preference to class parameters  as of
+	#   Puppet 2.6.)
+	#
+	# === Examples
+	#
+	#  class { 'example_class':
+	#    ntp_servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+	#  }
+	#
+	# === Authors
+	#
+	# Author Name <author@domain.com>
+	#
+	# === Copyright
+	#
+	# Copyright 2011 Your name here, unless otherwise noted.
+	#
+	class example_class {
+
+	}
+
+snippet rddef
+	# == Define: example_resource
+	#
+	# Full description of defined resource type example_resource here.
+	#
+	# === Parameters
+	#
+	# Document parameters here
+	#
+	# [*namevar*]
+	#   If there is a parameter that defaults to the value of the title string
+	#   when not explicitly set, you must always say so.  This parameter can be
+	#   referred to as a "namevar," since it's functionally equivalent to the
+	#   namevar of a core resource type.
+	#
+	# [*basedir*]
+	#   Description of this variable.  For example, "This parameter sets the
+	#   base directory for this resource type.  It should not contain a trailing
+	#   slash."
+	#
+	# === Examples
+	#
+	# Provide some examples on how to use this type:
+	#
+	#   example_class::example_resource { 'namevar':
+	#     basedir => '/tmp/src',
+	#   }
+	#
+	# === Authors
+	#
+	# Author Name <author@domain.com>
+	#
+	# === Copyright
+	#
+	# Copyright 2011 Your name here, unless otherwise noted.
+	#
+	define example_class::example_resource($basedir) {
+
+	}
+
+
+# vim:ft=snippet.puppet ts=4 sts=4 sw=4 noet nosta list foldlevel=9:
+
