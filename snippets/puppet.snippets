@@ -16,165 +16,165 @@
 
 snippet group
 	group { '${1}':
-	    ensure => present,
-	    gid    => '${2}',
-	  # tag    => 'app-app',
+	  ensure => present,
+	  gid    => '${2}',
+	# tag    => 'app-app',
 	}
 
 snippet user
 	user { '${1}':
-	    ensure     => present,
-	    uid        => '${1}',
-	    gid        => '${2}',
-	    shell      => '/bin/${3:bash}',
-	    home       => '/home/${1}',
-	    comment    => 'User ${1}',
-	  # password   => '*LK*',
-	  # groups     => [ 'users','app','dba' ]
-	    managehome => true,
-	    allowdupe  => false,
-	  # tag        => 'app-app',
+	  ensure     => present,
+	  uid        => '${1}',
+	  gid        => '${2}',
+	  shell      => '/bin/${3:bash}',
+	  home       => '/home/${1}',
+	  comment    => 'User ${1}',
+	# password   => '*LK*',
+	# groups     => [ 'users','app','dba' ]
+	  managehome => true,
+	  allowdupe  => false,
+	# tag        => 'app-app',
 	}
 
 snippet package
 	package { '${1:package}':
-	    ensure      => 'present',
-	  # ensure      => [installed, '1.6.9p17-2'],
-	  # source      => 'http://exameple.com/pkg.rpm',
-	  # require     => Package['dependency'],
-	  # provider    => :rpm,
-	  # provider    => :yum,
-	  # alias       => 'openssh',
-	  # description => 'OpenSSH',
-	  # tag         => 'app-app',
+	  ensure      => 'present',
+	# ensure      => [installed, '1.6.9p17-2'],
+	# source      => 'http://exameple.com/pkg.rpm',
+	# require     => Package['dependency'],
+	# provider    => :rpm,
+	# provider    => :yum,
+	# alias       => 'openssh',
+	# description => 'OpenSSH',
+	# tag         => 'app-app',
 	}
 
 
 snippet file
 	file { '${1}':
-	    ensure  => present,
-	    path    => '/path/to/file',
-	    owner   => '${2:user}',
-	    group   => '${3:app}',
-	    mode    => '0644',
-	    source  => '${4:module_name}/${5:file_name}',
-	  # content => 'Blahblah \n\n',
-	  # content => $str,
-	  # content => template( 'puppet:///modules/${4:module_name}/${5:file_name}' ),
-	  # audit   => 'all',
-	  # backup  => main, # if defined 'filebucket'
-	  # tag     => 'app-app',
+	  ensure  => present,
+	  path    => '/path/to/file',
+	  owner   => '${2:user}',
+	  group   => '${3:app}',
+	  mode    => '0644',
+	  source  => '${4:module_name}/${5:file_name}',
+	# content => 'Blahblah \n\n',
+	# content => $str,
+	# content => template( 'puppet:///modules/${4:module_name}/${5:file_name}' ),
+	# audit   => 'all',
+	# backup  => main, # if defined 'filebucket'
+	# tag     => 'app-app',
 	}
 
 
 snippet service
 	service { '${1:service}':
-	    name    => '${2:service_name}',
-	    ensure  => running,
-	    enable  => true,
-	  # pattern => '${1:service_name}',
-	  # start   => '',
-	  # stop    => '',
-	  # restart => '',
-	  # status  => '',
-	  # tag     => 'app-app',
+	  name    => '${2:service_name}',
+	  ensure  => running,
+	  enable  => true,
+	# pattern => '${1:service_name}',
+	# start   => '',
+	# stop    => '',
+	# restart => '',
+	# status  => '',
+	# tag     => 'app-app',
 	}
 
 
 snippet exec
 	exec { '${1}':
-	    command     => '${2}',
-	    cwd         => '${3}',
-	    creates     => '/path/to/file',
-	    path        => '/usr/local/bin:/usr/bin:/bin'
-	    logoutput   => on_failure,
-	  # user        => 'user',
-	  # group       => 'app',
-	  # environment => [ 'RAILS_ENV=production', 'TAG=v1' ],
-	  # onlyif      => 'test `du /var/log/messages | cut -f1` -gt 100000',
-	  # unless      => 'grep root /usr/lib/cron/cron.allow 2>/dev/null',
-	  # tries       => 3,
-	  # timeout     => 60, # seconds
-	  # try_sleep   => 15, # seconds
-	  # tag         => 'app-app',
+	  command     => '${2}',
+	  cwd         => '${3}',
+	  creates     => '/path/to/file',
+	  path        => '/usr/local/bin:/usr/bin:/bin'
+	  logoutput   => on_failure,
+	# user        => 'user',
+	# group       => 'app',
+	# environment => [ 'RAILS_ENV=production', 'TAG=v1' ],
+	# onlyif      => 'test `du /var/log/messages | cut -f1` -gt 100000',
+	# unless      => 'grep root /usr/lib/cron/cron.allow 2>/dev/null',
+	# tries       => 3,
+	# timeout     => 60, # seconds
+	# try_sleep   => 15, # seconds
+	# tag         => 'app-app',
 	}
 
 
 snippet ssh
 	ssh_authorized_key {
-	    ensure  => present,
-	    user    => '${1}',
-	    key     => '${2}',
-	    name    => '${1:user@host}',
-	  # tag     => 'app-app',
+	  ensure  => present,
+	  user    => '${1}',
+	  key     => '${2}',
+	  name    => '${1:user@host}',
+	# tag     => 'app-app',
 	}
 
 snippet host
 	host { '${1:localhost}':
-	    ensure       => present,
-	    ip           => '${1:127.0.0.1}',
-	    name         => '${2:localhost}',
-	  # host_aliases => [ 'localhost.localdomain' ],
-	  # comment      => 'localhost only!',
-	  # tag          => 'app-app',
+	  ensure       => present,
+	  ip           => '${1:127.0.0.1}',
+	  name         => '${2:localhost}',
+	# host_aliases => [ 'localhost.localdomain' ],
+	# comment      => 'localhost only!',
+	# tag          => 'app-app',
 	}
 
 
 snippet mount
 	mount { '${1:/home}':
-	    ensure  => mounted,
-	    atboot  => true,
-	    device  => '${2:192.168.10.10:/path}',
-	    fstype  => 'nfs',   # ext3, xfs, nfs
-	    options => 'defaults,ro,_netdev,noexec,nosuid,noatime',
-	    dump    => '0',
-	    pass    => '0',     # 0:nfs, 2:others
-	  # require => [ Package['nfs-utils'], Package['nfs'] ];
-	  # tag     => 'app-app',
+	  ensure  => mounted,
+	  atboot  => true,
+	  device  => '${2:192.168.10.10:/path}',
+	  fstype  => 'nfs',   # ext3, xfs, nfs
+	  options => 'defaults,ro,_netdev,noexec,nosuid,noatime',
+	  dump    => '0',
+	  pass    => '0',     # 0:nfs, 2:others
+	# require => [ Package['nfs-utils'], Package['nfs'] ];
+	# tag     => 'app-app',
 	}
 
 
 snippet cron
 	cron { '${1:myjob}':
-	    ensure      => present,
-	    command     => '${2:/usr/local/bin/myjob.sh -f}',
-	    user        => '${3:userapp}',
-	    hour        => '23',  # 00-23
-	    minute      => '00',  # 00-59
-	  # monthday    => '01',  # 01-31
-	  # month       => '01',  # 01-12
-	  # weekday     => '01',  # 00-07 / Sunday,Monday,etc...
-	  # environment => [ 'RAILS_ENV=production', 'TAG=v1' ],
-	  # tag         => 'app-app',
+	  ensure      => present,
+	  command     => '${2:/usr/local/bin/myjob.sh -f}',
+	  user        => '${3:userapp}',
+	  hour        => '23',  # 00-23
+	  minute      => '00',  # 00-59
+	# monthday    => '01',  # 01-31
+	# month       => '01',  # 01-12
+	# weekday     => '01',  # 00-07 / Sunday,Monday,etc...
+	# environment => [ 'RAILS_ENV=production', 'TAG=v1' ],
+	# tag         => 'app-app',
 	}
 
 
 snippet tidy
 	tidy { '${1:/tmp}':
-	    age     => '${2:1w}',
-	    size    => '${3:50m}',  # 50b, 50k, 50m, 50g, 50t
-	  # matches => [ '*.temp', 'tmpfile?' ],
-	  # recurse => true,
-	  # rmdirs  => true,
-	  # path    => '',
-	  # tag     => 'app-app',
+	  age     => '${2:1w}',
+	  size    => '${3:50m}',  # 50b, 50k, 50m, 50g, 50t
+	# matches => [ '*.temp', 'tmpfile?' ],
+	# recurse => true,
+	# rmdirs  => true,
+	# path    => '',
+	# tag     => 'app-app',
 	}
 
 
 snippet yumrepo
 	yumrepo { '${1:RHEL x}':
-	    name           => '${1:RHEL x}',
-	    descr          => 'RHEL X',
-	    baseurl        => 'http://example.org/pub/stable/$operatingsystem/$operatingsystemrelease/$architecture',
-	    enabled        => 1,
-	    gpgcheck       => 1,
-	  # gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-name',
-	  # mirrorlist     => [ '', ''],
-	  # timeout        => 120, # 120 secondes
-	  # proxy          => '',
-	  # proxy_username => '',
-	  # proxy_password => '',
-	  # tag            => 'app-app',
+	  name           => '${1:RHEL x}',
+	  descr          => 'RHEL X',
+	  baseurl        => 'http://example.org/pub/stable/$operatingsystem/$operatingsystemrelease/$architecture',
+	  enabled        => 1,
+	  gpgcheck       => 1,
+	# gpgkey         => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-name',
+	# mirrorlist     => [ '', ''],
+	# timeout        => 120, # 120 secondes
+	# proxy          => '',
+	# proxy_username => '',
+	# proxy_password => '',
+	# tag            => 'app-app',
 
 	}
 
@@ -182,40 +182,40 @@ snippet yumrepo
 snippet node
 	node /${1}/ {
 
-	    include ${2}
+	  include ${2}
 
-	    # Additional tags:
-	    # tag('app-app')
+	  # Additional tags:
+	  # tag('app-app')
 	}
 
 
 snippet class
 	class ${1} {
 
-	    # code
+	  # code
 
-	    # Additional tags:
-	    # tag('app-app')
+	  # Additional tags:
+	  # tag('app-app')
 	}
 
 
 snippet classp
 	class ${1}(
-	  $p1,
-	  $p2 = '/usr',
+	$p1,
+	$p2 = '/usr',
 	) {
 
-	    # code
+	  # code
 
-	    # Additional tags:
-	    # tag('app-app')
+	  # Additional tags:
+	  # tag('app-app')
 	}
 
 
 snippet define
 	define ${1}(${1:param}) {
 
-	    include ${2}
+	  include ${2}
 
 	end
 	}
@@ -228,22 +228,22 @@ snippet define
 ###
 snippet dir
 	file { '${1}':
-	    ensure  => directory,
-	    path    => '/path/to/dir',
-	    mode    => '0775',
-	    owner   => '${2}',
-	    group   => '${3}',
-	    recurse => false,
-	  # tag     => 'app-app',
+	  ensure  => directory,
+	  path    => '/path/to/dir',
+	  mode    => '0775',
+	  owner   => '${2}',
+	  group   => '${3}',
+	  recurse => false,
+	# tag     => 'app-app',
 	}
 
 
 snippet link
 	file { '${1}':
-	    ensure  => link,
-	    target  => '${2:/path/to/file}',
-	    force   => true,
-	  # tag     => 'app-app',
+	  ensure  => link,
+	  target  => '${2:/path/to/file}',
+	  force   => true,
+	# tag     => 'app-app',
 	}
 
 snippet =>
@@ -251,8 +251,8 @@ snippet =>
 
 snippet =>[
 	=> [ '${1}',
-	     '${2}',
-	   ],
+	   '${2}',
+	 ],
 
 #############################################################################
 ###
@@ -264,8 +264,8 @@ snippet Package
 
 snippet Exec
 	Exec {
-	    path      => '/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
-	    logoutput => on_failure,
+	  path      => '/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+	  logoutput => on_failure,
 	}
 
 
